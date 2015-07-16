@@ -1,0 +1,21 @@
+{
+  "name": "atom-inline-messages-sample-plugin",
+  "main": "./lib/inline-messenger",
+  "version": "0.1.0",
+  "description": "Sample App for Inline Messaging in the Atom Editor",
+  "repository": "https://github.com/mdgriffith/atom-inline-messages-sample-plugin",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {
+
+  },
+  "consumedServices": {
+    "inline-messaging": {
+      "versions": {
+        "^0.1.0": "consumeInlineMessenger"
+      }
+    }
+  }
+}

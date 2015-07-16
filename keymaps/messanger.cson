@@ -1,0 +1,3 @@
+'atom-text-editor':
+  'cmd-alt-=': 'atom-inline-messenger:insert'
+  'cmd-alt--': 'atom-inline-messenger:clear'
