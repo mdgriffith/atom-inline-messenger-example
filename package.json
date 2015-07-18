@@ -1,7 +1,7 @@
 {
   "name": "atom-inline-messenger-example",
   "main": "./lib/inline-messenger",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Sample App for Inline Messaging in the Atom Editor",
   "repository": "https://github.com/mdgriffith/atom-inline-messenger-example",
   "license": "MIT",
