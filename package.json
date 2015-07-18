@@ -1,5 +1,5 @@
 {
-  "name": "atom-inline-messages-sample-plugin",
+  "name": "atom-inline-messenger-example",
   "main": "./lib/inline-messenger",
   "version": "1.0.0",
   "description": "Sample App for Inline Messaging in the Atom Editor",
@@ -12,7 +12,7 @@
   "consumedServices": {
     "inline-messaging": {
       "versions": {
-        "^0.1.0": "consumeInlineMessenger"
+        "^1.0.0": "consumeInlineMessenger"
       }
     }
   }
