@@ -5,20 +5,17 @@
 path = require 'path'
 
 module.exports =
-   
+
     activate: (state) ->
       atom.commands.add 'atom-text-editor',
         'atom-inline-messenger:insert': (event) =>
           @run()
 
-      # atom.commands.add 'atom-text-editor',
-      #   'atom-inline-messenger:clear': (event) =>
-      #     @clear()
-
       @messenger = null
-      
+      @messages = []
 
     deactivate: ->
+      @messages.map (msg) -> msg.destroy()
 
     serialize: ->
       return "{}"
@@ -27,57 +24,59 @@ module.exports =
       @messenger = messenger
 
     run: ->
-      # editor = atom.workspace.getActiveEditor()
-
       if @messenger
-       
+        atom.workspace.open('example.py').then (editor) =>
+          editor.insertText(@exampleCode())
 
-        @messenger.message
-          start: [22,0]  
-          end: [22,8] 
-          text: "A New Message!"
-          severity: "warning"
-          debug: true
+          @messages.push @messenger.message
+            range: [[15,0],[15,11]]
+            text: "Inconsistent indentation"
+            severity: "warning"
 
+          @messages.push @messenger.message
+            range: [[22,0],[26,1]]
+            text: "I wrote this so I could make a comment on multiline code."
+            severity: "error"
 
-        @messenger.message
-          start: [9,0]  
-          end: [14,10] 
-          text: "CONTENT!"
-          severity: "warning"
-          debug: true
-
-        @messenger.suggest
-          start: [18,0] 
-          end: [25,80]
-          text: 'Why not'
-          suggestedCode: "atom.commands.add 'atom-text-editor',"
-          debug: true
-
-        @messenger.message
-          start: [18,0] 
-          end: [18,9]   
-          text: "Short Inline Message!"
-          severity: "warning"
-          debug: true
+          @messages.push @messenger.message
+            range: [[4,0],[4,21]]
+            text: "New style python classes inherit from object"
+            suggestion: 'class ExampleCode(object):'
 
 
-        @messenger.message
-          start: [19,4] 
-          end: [19,80]   
-          text: "Short Inline Message!"
-          severity: "warning"
-          debug: true
+    exampleCode: -> """# This files was made as some example code to show an example
+# of code with messages from atom-inline-messenger
 
-      
-        @messenger.message
-          start: [32,0] 
-          end: [32,9]   
-          text: "Short Inline Message!"
-          severity: "warning"
-          debug: true
+
+class ExampleCode():
+    \"\"\"
+    Some example code to apply messages
+    to for atom-inline-messenger-example
+    \"\"\"
+
+    def __init__(self):
+        self.value1 = True
+        self.value2 = True
+
+    def method1(self):
+      pass
+
+    def method2(self):
+        print "Here's method 2!"
 
 
 
-    
+javascriptFn = function(){
+    thisFn = "is obviously javascript and should not be in a python module";
+    seriously = "what are you doing?"
+    return undefined
+}
 
+
+
+
+
+if __name__ == "__main__":
+    example = ExampleCode()
+    example.method2()
+"""
