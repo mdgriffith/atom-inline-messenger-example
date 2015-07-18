@@ -25,7 +25,7 @@ module.exports =
 
     run: ->
       if @messenger
-        atom.workspace.open('example.py').then (editor) =>
+        atom.workspace.open('messagingExample.py').then (editor) =>
           editor.insertText(@exampleCode())
 
           @messages.push @messenger.message
