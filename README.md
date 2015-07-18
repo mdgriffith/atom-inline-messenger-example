@@ -2,9 +2,10 @@
 
 This package has example usage of the [inline messenger](https://github.com/mdgriffith/atom-inline-messenger) package.
 
+After installing this package, hit `cmd-alt-+`.  A new page will be created with some example messages and a code suggestion.
+Use `alt-up` or `alt-down` to scroll through the messages, and `cmd-shift-a` to accept the suggestion.
 
-Inline messenger provides a service you can use in other Atom projects.  To use
-it, include `inline-messenger` in the `consumedServices` section of your `package.json`:
+Inline messenger provides a service for use in other Atom projects. With it, a package can show messages next to the relevant, highlighted code,  and optionally make a code suggestion for the selected text. To use it, include `inline-messenger` in the `consumedServices` section of your `package.json`:
 
 ```json
 {

@@ -8,7 +8,7 @@ module.exports =
 
     activate: (state) ->
       atom.commands.add 'atom-text-editor',
-        'atom-inline-messenger:insert': (event) =>
+        'atom-inline-messenger-example:insert': (event) =>
           @run()
 
       @messenger = null
