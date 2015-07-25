@@ -1,5 +1,6 @@
 { Point
 , View
+, Range
 } = require 'atom'
 
 path = require 'path'
@@ -34,6 +35,11 @@ module.exports =
             severity: "warning"
 
           @messages.push @messenger.message
+            range: [[12,22],[12,29]]
+            text: "Should be..uhh...False?"
+            severity: "warning"
+
+          @messages.push @messenger.message
             range: [[22,0],[26,1]]
             text: "I wrote this so I could make a comment on multiline code."
             severity: "error"
@@ -42,6 +48,19 @@ module.exports =
             range: [[4,0],[4,21]]
             text: "New style python classes inherit from object"
             suggestion: 'class ExampleCode(object):'
+
+
+          traceStep1 = {
+            filePath: '/Users/matthewgriffith/atom-inline-messaging/package.json'
+            range: new Range([30,0],[30,80])
+            text: 'tracing example message'
+          }
+
+          @messages.push @messenger.message
+            range: [[30,0],[30,28]]
+            text: "This message is an example of a message with a trace"
+            severity: "error"
+            trace: [ traceStep1 ]
 
 
     exampleCode: -> """# This files was made as some example code to show an example
@@ -74,9 +93,25 @@ javascriptFn = function(){
 
 
 
+class ExampleCode2(object):
+
+  def __init__(self):
+    print "Hey, this is an example"
+
 
 
 if __name__ == "__main__":
     example = ExampleCode()
     example.method2()
+
+
+
+
+
+
+
+
+
+
+
 """
